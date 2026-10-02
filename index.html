@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smart Habit Tracker</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="brand">✦ Smart Habit Tracker</div><div class="streak">🔥 <span id="streak">0</span> day streak</div></header>
+<main>
+<section class="hero"><p>BUILD • TRACK • IMPROVE</p><h1>Small habits.<br><span>Big progress.</span></h1><p class="sub">Track your daily habits, build consistency, and see your progress at a glance.</p></section>
+<section class="dashboard">
+<div class="card add-card"><h2>Add a Habit</h2><form id="habitForm"><input id="habitName" placeholder="e.g. Read 20 minutes" required><select id="habitCategory"><option>Study</option><option>Health</option><option>Fitness</option><option>Personal</option></select><button>Add Habit</button></form></div>
+<div class="stats"><div class="card stat"><span>Today's Progress</span><strong id="progress">0%</strong></div><div class="card stat"><span>Completed Today</span><strong id="completed">0</strong></div><div class="card stat"><span>Total Habits</span><strong id="total">0</strong></div></div>
+</section>
+<section class="card habits-card"><div class="section-title"><h2>Today's Habits</h2><button id="resetBtn" class="secondary">Reset Today</button></div><div id="habitList"></div><p id="empty" class="empty">No habits yet. Add your first habit above!</p></section>
+</main><footer>Smart Habit Tracker • HTML • CSS • JavaScript • LocalStorage</footer>
+<script src="script.js"></script></body></html>

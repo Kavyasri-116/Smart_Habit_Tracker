@@ -1,0 +1,10 @@
+const form=document.getElementById("habitForm"),list=document.getElementById("habitList"),empty=document.getElementById("empty"),progressEl=document.getElementById("progress"),completedEl=document.getElementById("completed"),totalEl=document.getElementById("total"),streakEl=document.getElementById("streak");
+let habits=JSON.parse(localStorage.getItem("smartHabits")||"[]");
+function save(){localStorage.setItem("smartHabits",JSON.stringify(habits))}
+function safe(v){return v.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function render(){list.innerHTML="";empty.style.display=habits.length?"none":"block";let completed=habits.filter(h=>h.done).length;
+habits.forEach((h,i)=>{const row=document.createElement("div");row.className="habit"+(h.done?" done":"");row.innerHTML=`<button class="check ${h.done?"done":""}" onclick="toggleHabit(${i})">${h.done?"✓":"○"}</button><div class="habit-info"><div class="habit-name">${safe(h.name)}</div><div class="habit-category">${safe(h.category)}</div></div><button class="delete" onclick="deleteHabit(${i})">Delete</button>`;list.appendChild(row)});
+progressEl.textContent=(habits.length?Math.round(completed/habits.length*100):0)+"%";completedEl.textContent=completed;totalEl.textContent=habits.length;streakEl.textContent=habits.length&&habits.every(h=>h.done)?1:0}
+function toggleHabit(i){habits[i].done=!habits[i].done;save();render()} function deleteHabit(i){habits.splice(i,1);save();render()}
+form.addEventListener("submit",e=>{e.preventDefault();habits.push({name:document.getElementById("habitName").value.trim(),category:document.getElementById("habitCategory").value,done:false});save();render();form.reset()});
+document.getElementById("resetBtn").addEventListener("click",()=>{habits.forEach(h=>h.done=false);save();render()});render();
